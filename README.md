@@ -1,6 +1,7 @@
 # CareWise
 
 CareWise is a B2B healthcare SaaS demo built with Next.js. It gives care teams a clinical operations dashboard with patient worklists, analytics, notifications, and a protected login flow.
+<img width="1454" height="836" alt="Screenshot 2026-05-02 at 02 03 19" src="https://github.com/user-attachments/assets/5d790f56-bf56-4e7d-9722-e2288a78e38d" />
 
 ## Features
 
