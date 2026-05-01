@@ -1,0 +1,15 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark rounded background -->
+  <rect width="128" height="128" rx="28" fill="#080b14"/>
+  <!-- Cyan border glow -->
+  <rect width="128" height="128" rx="28" fill="none" stroke="#06b6d4" stroke-width="4" opacity="0.4"/>
+  <!-- Activity / EKG pulse line -->
+  <polyline
+    points="12,64 36,64 48,34 60,94 72,50 84,72 96,64 116,64"
+    fill="none"
+    stroke="#06b6d4"
+    stroke-width="9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
