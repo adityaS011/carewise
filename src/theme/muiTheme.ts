@@ -173,10 +173,10 @@ export const muiTheme = createTheme({
     MuiAlert: {
       styleOverrides: {
         root: { borderRadius: tokens.radius.md, fontSize: '0.8rem', padding: '9px 12px' },
-        standardError:   { background: 'rgba(239,68,68,0.1)',   border: '1px solid rgba(239,68,68,0.2)',   color: t.accents.red    },
-        standardWarning: { background: 'rgba(245,158,11,0.1)',  border: '1px solid rgba(245,158,11,0.2)',  color: t.accents.orange },
-        standardSuccess: { background: 'rgba(16,185,129,0.1)',  border: '1px solid rgba(16,185,129,0.2)',  color: t.accents.green  },
-        standardInfo:    { background: 'rgba(59,130,246,0.1)',  border: '1px solid rgba(59,130,246,0.2)',  color: t.accents.blue   },
+        colorError:   { background: 'rgba(239,68,68,0.1)',   border: '1px solid rgba(239,68,68,0.2)',   color: t.accents.red    },
+        colorWarning: { background: 'rgba(245,158,11,0.1)',  border: '1px solid rgba(245,158,11,0.2)',  color: t.accents.orange },
+        colorSuccess: { background: 'rgba(16,185,129,0.1)',  border: '1px solid rgba(16,185,129,0.2)',  color: t.accents.green  },
+        colorInfo:    { background: 'rgba(59,130,246,0.1)',  border: '1px solid rgba(59,130,246,0.2)',  color: t.accents.blue   },
         icon:            { alignItems: 'center', padding: 0 },
       },
     },

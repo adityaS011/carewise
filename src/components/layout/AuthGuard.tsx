@@ -16,7 +16,7 @@ export function AuthGuard({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!mounted) return;
     if (!user && !isLogin) router.replace("/login");
-    if (user && isLogin) router.replace("/dashboard");
+    if (user && isLogin) router.replace("/home");
   }, [isLogin, mounted, router, user]);
 
   if (!mounted || (!user && !isLogin)) return (

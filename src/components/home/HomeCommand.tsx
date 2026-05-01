@@ -59,13 +59,13 @@ export function HomeCommand() {
           { label: 'Care Teams',     value: 4,                subtext: 'Active service lines', icon: Activity,      accent: t.accents.green,  onClick: () => router.push('/analytics') },
           { label: 'Recovering',     value: patients.filter((p) => p.status === 'Recovering').length, subtext: 'Post-acute patients', accent: t.accents.blue, onClick: () => goPatients(() => setStatus('Recovering')) },
         ].map((card) => (
-          <Grid size={2} key={card.label}><InsightCard {...card} /></Grid>
+          <Grid size={{ xs: 6, sm: 4, md: 2 }} key={card.label}><InsightCard {...card} /></Grid>
         ))}
       </Grid>
 
       {/* Worklist + side panels */}
       <Grid container spacing={2.5}>
-        <Grid size={8}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <MuiCard sx={{ p: 0, overflow: 'hidden' }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: `1px solid ${t.border}`, p: '18px 20px 16px' }}>
               <Box>
@@ -78,7 +78,7 @@ export function HomeCommand() {
           </MuiCard>
         </Grid>
 
-        <Grid size={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <MuiCard sx={{ p: 0, overflow: 'hidden' }}>
             <Box sx={{ display: 'flex', borderBottom: `1px solid ${t.border}` }}>
               {TABS.map(({ id, label }) => (
