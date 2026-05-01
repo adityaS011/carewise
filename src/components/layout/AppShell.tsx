@@ -14,7 +14,7 @@ import { IconButton } from '@/components/ui/Button';
 const t = tokens.colors;
 
 const NAV = [
-  { href: '/dashboard', label: 'Home',      icon: LayoutDashboard },
+  { href: '/',          label: 'Home',      icon: LayoutDashboard },
   { href: '/analytics', label: 'Analytics', icon: BarChart3       },
   { href: '/patients',  label: 'Patients',  icon: Users           },
 ];
@@ -41,13 +41,13 @@ export function AppShell({ children }: { children: ReactNode }) {
 
         {/* Sidebar */}
         <Box component="aside" sx={{ background: t.sidebar.bg, borderRight: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', p: '20px 12px', overflow: 'hidden' }}>
-          <Box component={Link} href="/dashboard" sx={{ display: 'flex', alignItems: 'center', gap: '9px', color: t.brand, fontWeight: 800, fontSize: '1rem', letterSpacing: '-0.02em', mb: '28px', p: '6px 8px', borderRadius: tokens.radius.md, textDecoration: 'none' }}>
+          <Box component={Link} href="/" sx={{ display: 'flex', alignItems: 'center', gap: '9px', color: t.brand, fontWeight: 800, fontSize: '1rem', letterSpacing: '-0.02em', mb: '28px', p: '6px 8px', borderRadius: tokens.radius.md, textDecoration: 'none' }}>
             <Activity size={20} /> CareWise
           </Box>
 
           <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: '2px', flex: 1 }}>
             {NAV.map(({ href, label, icon: Icon }) => {
-              const active = (pathname ?? '').startsWith(href);
+              const active = href === '/' ? pathname === '/' : (pathname ?? '').startsWith(href);
               return (
                 <Box
                   key={href}

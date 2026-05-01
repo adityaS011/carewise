@@ -1,5 +1,12 @@
-import { redirect } from "next/navigation";
+import { AppShell } from "@/components/layout/AppShell";
+import { HomeCommand } from "@/components/home/HomeCommand";
+import { DemoDataBar } from "@/components/layout/DemoDataBar";
 
-export default function Home() {
-  redirect("/dashboard");
+export default function HomePage() {
+  return (
+    <AppShell>
+      <DemoDataBar />
+      <HomeCommand />
+    </AppShell>
+  );
 }

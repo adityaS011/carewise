@@ -1,11 +1,5 @@
 'use client';
 
-/**
- * DashboardStats — Top-Level KPI Summary Row
- *
- * Modular component: reads from usePatientStore, composed of InsightCard primitives.
- * Renders four live KPI tiles in a responsive 4→2→1 column grid.
- */
 import styled from 'styled-components';
 import { Activity, AlertTriangle, HeartPulse, Users } from 'lucide-react';
 import { usePatientStore } from '@/store/patientStore';
@@ -24,7 +18,7 @@ const Grid = styled.section`
 
 const c = tokens.colors;
 
-export function DashboardStats() {
+export function HomeStats() {
   const { patients = [], tasks = [] } = usePatientStore();
   const highRisk  = patients.filter((p) => p.risk >= 75).length;
   const openTasks = tasks.filter((t) => t.status !== 'Done').length;
