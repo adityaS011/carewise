@@ -18,6 +18,7 @@ type PatientState = PatientBaseState & {
   updateStatus: (id: string, status: PatientStatus) => void;
   addTask: (patientId: string, title: string) => void;
   updateTask: (id: string, status: TaskStatus) => void;
+  clearFilters: () => void;
   resetDemo: () => void;
   getPatient: (id: string) => Patient | undefined;
 };
@@ -57,6 +58,7 @@ export const usePatientStore = create<PatientState>()(
       updateTask: (id, status) => set((state) => ({
         tasks: (state.tasks ?? []).map((t) => t.id === id ? { ...t, status } : t)
       })),
+      clearFilters: () => set({ query: '', team: 'all', status: 'all', risk: 'all' }),
       resetDemo: () => set(baseData),
       getPatient: (id) => (get().patients ?? []).find((p) => p.id === id)
     }),

@@ -1,13 +1,17 @@
 'use client';
 
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { Search } from 'lucide-react';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import { Search, X } from 'lucide-react';
 import { usePatientStore } from '@/store/patientStore';
 import { SearchInput, CascadeMenu } from '@/components/ui';
 import { ViewToggle } from './ViewToggle';
+import { tokens } from '@/theme/tokens';
 
 export function PatientFilters() {
-  const { patients = [], query, risk, status, team, setQuery, setRisk, setStatus, setTeam } = usePatientStore();
+  const { patients = [], query, risk, status, team, setQuery, setRisk, setStatus, setTeam, clearFilters } = usePatientStore();
 
   const teamOptions = Array.from(new Set(patients.map((p) => p.careTeam))).map((t) => ({
     label: t, value: `team:${t}`,
@@ -19,6 +23,8 @@ export function PatientFilters() {
     status !== 'all' ? `status:${status}` : null,
     risk   !== 'all' ? `risk:${risk}`     : null,
   ].filter(Boolean) as string[];
+
+  const hasActiveFilters = query !== '' || selectedValues.length > 0;
 
   const handleSelect = ({ value }: { value?: string }) => {
     if (!value) return;
@@ -72,7 +78,27 @@ export function PatientFilters() {
         ]}
       />
 
-      <ViewToggle />
+      {hasActiveFilters && (
+        <Tooltip title="Clear all filters">
+          <IconButton
+            size="small"
+            onClick={clearFilters}
+            sx={{
+              color: tokens.colors.text.muted,
+              border: `1px solid ${tokens.colors.border}`,
+              borderRadius: tokens.radius.md,
+              p: '4px',
+              '&:hover': { color: tokens.colors.text.primary, borderColor: tokens.colors.text.muted },
+            }}
+          >
+            <X size={14} />
+          </IconButton>
+        </Tooltip>
+      )}
+
+      <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+        <ViewToggle />
+      </Box>
     </Stack>
   );
 }

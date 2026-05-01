@@ -21,7 +21,7 @@ const MetricsGrid = styled.section`
   margin-bottom: 16px;
 
   @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 600px)  { grid-template-columns: 1fr; }
+  @media (max-width: 600px)  { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 `;
 
 const PulseGrid = styled.section`
@@ -30,7 +30,8 @@ const PulseGrid = styled.section`
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 24px;
 
-  @media (max-width: 700px) { grid-template-columns: 1fr; }
+  @media (max-width: 700px) { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 480px) { grid-template-columns: 1fr; gap: 8px; }
 `;
 
 const PulseCard = styled.article`
@@ -39,9 +40,16 @@ const PulseCard = styled.article`
   border-radius: ${tokens.radius.lg};
   padding: 18px;
 
+  @media (max-width: 600px) { padding: 12px; }
+
   & strong { color: ${c.text.primary}; display: block; font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
   & p      { color: ${c.text.secondary}; font-size: 0.84rem; font-weight: 600; margin-top: 6px; }
   & span   { color: ${c.text.muted}; font-size: 0.75rem; }
+
+  @media (max-width: 600px) {
+    & strong { font-size: 1.4rem; }
+    & p      { font-size: 0.78rem; margin-top: 4px; }
+  }
 `;
 
 const Body = styled.div`

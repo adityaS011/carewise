@@ -13,7 +13,7 @@ const Grid = styled.section`
   margin-bottom: 20px;
 
   @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 500px) { grid-template-columns: 1fr; }
+  @media (max-width: 500px) { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 `;
 
 const c = tokens.colors;

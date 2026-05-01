@@ -16,12 +16,12 @@ export function PatientsCommand() {
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', mb: '4px' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', mb: '4px' }}>
         <Box>
           <Box sx={{ color: t.text.muted, fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Patient registry</Box>
           <Box sx={{ color: t.text.primary, fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', mt: '2px' }}>All patients</Box>
         </Box>
-        <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <Box sx={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap', width: { xs: '100%', sm: 'auto' } }}>
           <PatientFilters />
           <Button variant="primary" size="sm" onClick={() => setIntakeOpen(true)} startIcon={<Plus size={13} />}>Add patient</Button>
         </Box>

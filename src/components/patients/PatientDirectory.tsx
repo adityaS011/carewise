@@ -3,6 +3,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { PatientCard } from './PatientCard';
 import { PatientListRow, PatientListHeader } from './PatientListRow';
 import { PatientDrawer } from './PatientDrawer';
@@ -11,6 +12,8 @@ import { tokens } from '@/theme/tokens';
 
 export function PatientDirectory() {
   const { patients = [], query, risk, status, team, view } = usePatientStore();
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const effectiveView = isMobile ? 'grid' : view;
   const normalized = query.toLowerCase();
 
   const filtered = patients.filter((p) => {
@@ -23,7 +26,7 @@ export function PatientDirectory() {
 
   return (
     <>
-      {view === 'grid' ? (
+      {effectiveView === 'grid' ? (
         <Grid container spacing={1.75} sx={{ mt: '20px' }}>
           {filtered.map((p) => <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={p.id}><PatientCard patient={p} /></Grid>)}
         </Grid>

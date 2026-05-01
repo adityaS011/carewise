@@ -1,20 +1,13 @@
 'use client';
 
 /**
- * LoginForm — Authentication Entry Point
- *
- * Modular component: reads from useAuthStore.
- * Self-contained login card — delegates auth to the store.
- * All styling comes from the design system primitives (Card, Input, Button, Alert).
- *
- * Note: useAuthStore is a mock. Replace login() with a real API call in production.
- * Used in: app/login/page.tsx
+ * LoginForm — Firebase login/signup entry point.
  */
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import { FormEvent, useState } from 'react';
-import { Activity, Lock, Mail } from 'lucide-react';
+import { Activity, Lock, Mail, UserRound } from 'lucide-react';
 import { useAuthStore } from '@/store/authStore';
 import { Card, Input, Button } from '@/components/ui';
 import { tokens } from '@/theme/tokens';
@@ -38,7 +31,9 @@ function LoginBrand() {
 }
 
 export function LoginForm() {
-  const { error, loading, login } = useAuthStore();
+  const { error, loading, login, signup } = useAuthStore();
+  const [mode,       setMode]       = useState<'login' | 'signup'>('login');
+  const [name,       setName]       = useState('Care Coordinator');
   const [email,      setEmail]      = useState('clinician@carewise.test');
   const [password,   setPassword]   = useState('carewise123');
   const [localError, setLocalError] = useState('');
@@ -47,7 +42,10 @@ export function LoginForm() {
     e.preventDefault();
     setLocalError('');
     if (!/^\S+@\S+\.\S+$/.test(email)) { setLocalError('Enter a valid work email.'); return; }
-    await login(email, password);
+    if (password.length < 6) { setLocalError('Password must be at least 6 characters.'); return; }
+    if (mode === 'signup' && !name.trim()) { setLocalError('Enter your name.'); return; }
+    if (mode === 'signup') await signup(name.trim(), email, password);
+    else await login(email, password);
   };
 
   const displayError = localError || error;
@@ -56,6 +54,31 @@ export function LoginForm() {
     <Card>
       <Stack component="form" spacing={2.5} onSubmit={onSubmit}>
         <LoginBrand />
+
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+          {(['login', 'signup'] as const).map((item) => (
+            <Button
+              key={item}
+              type="button"
+              variant={mode === item ? 'primary' : 'outline'}
+              onClick={() => setMode(item)}
+            >
+              {item === 'login' ? 'Login' : 'Sign up'}
+            </Button>
+          ))}
+        </Box>
+
+        {mode === 'signup' && (
+          <Input
+            fullWidth
+            autoComplete="name"
+            placeholder="Full name"
+            startIcon={<UserRound size={16} />}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            inputProps={{ 'aria-label': 'Full name' }}
+          />
+        )}
 
         <Input
           fullWidth
@@ -85,7 +108,7 @@ export function LoginForm() {
         )}
 
         <Button type="submit" variant="primary" size="lg" fullWidth disabled={loading}>
-          {loading ? 'Signing in…' : 'Sign in'}
+          {loading ? 'Working…' : mode === 'signup' ? 'Create account' : 'Sign in'}
         </Button>
       </Stack>
     </Card>

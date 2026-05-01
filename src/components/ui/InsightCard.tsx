@@ -27,7 +27,7 @@ export function InsightCard({ label, value, subtext, icon: Icon, accent, onClick
   const content = (
     <Box
       sx={{
-        p: '14px 16px',
+        p: { xs: '10px 12px', sm: '14px 16px' },
         cursor: onClick ? 'pointer' : 'default',
       }}
     >
@@ -37,14 +37,14 @@ export function InsightCard({ label, value, subtext, icon: Icon, accent, onClick
           {label}
         </span>
         {Icon && (
-          <Box sx={{ background: `${accent}22`, borderRadius: tokens.radius.md, p: '6px', color: accent, display: 'flex' }}>
+          <Box sx={{ background: `${accent}22`, borderRadius: tokens.radius.md, p: { xs: '4px', sm: '6px' }, color: accent, display: 'flex' }}>
             <Icon size={15} />
           </Box>
         )}
       </Box>
 
       {/* Value */}
-      <Box component="strong" sx={{ display: 'block', color: accent, fontSize: '1.9rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1 }}>
+      <Box component="strong" sx={{ display: 'block', color: accent, fontSize: { xs: '1.4rem', sm: '1.9rem' }, fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1 }}>
         {value}
       </Box>
 

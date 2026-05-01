@@ -37,13 +37,13 @@ export function HomeCommand() {
   return (
     <>
       {/* Page header */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: '24px' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', mb: '24px' }}>
         <Box>
           <Box sx={{ color: t.text.muted, fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Command center</Box>
           <Box sx={{ color: t.text.primary, fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', mt: '2px' }}>Clinical operations</Box>
           <Box sx={{ color: t.text.muted, fontSize: '0.78rem', mt: '2px' }}>North region · Live mock data · Morning shift</Box>
         </Box>
-        <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
           <Button variant="outline" size="sm" onClick={() => setIntakeOpen(true)} startIcon={<Plus size={13} />}>Add patient</Button>
           <NotificationButton />
         </Box>
@@ -67,7 +67,7 @@ export function HomeCommand() {
       <Grid container spacing={2.5}>
         <Grid size={{ xs: 12, md: 8 }}>
           <MuiCard sx={{ p: 0, overflow: 'hidden' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: `1px solid ${t.border}`, p: '18px 20px 16px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', borderBottom: `1px solid ${t.border}`, p: '18px 20px 16px' }}>
               <Box>
                 <Box sx={{ color: t.text.muted, fontSize: '0.72rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Worklist</Box>
                 <Box sx={{ color: t.text.primary, fontSize: '0.95rem', fontWeight: 600, mt: '2px' }}>Patients requiring attention</Box>
