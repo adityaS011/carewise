@@ -20,13 +20,13 @@ self.addEventListener('message', (event) => {
   );
 });
 
-// Clicking the notification focuses the app (or opens /dashboard)
+// Clicking the notification focuses the app.
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
 
   const targetUrl = event.notification.data?.patientId
     ? `/patients/${event.notification.data.patientId}`
-    : '/dashboard';
+    : '/';
 
   event.waitUntil(
     clients

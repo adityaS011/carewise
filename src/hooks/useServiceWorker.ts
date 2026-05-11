@@ -20,18 +20,18 @@ export function useServiceWorker() {
       setEnabled(true);
     }
 
-    // SW registered only for background push — not used for triggering
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      navigator.serviceWorker.register('/sw.js').catch((error) => {
+        console.error('CareWise service worker registration failed:', error);
+      });
     }
   }, [setEnabled]);
 
   const sendNotification = useCallback(
     async (payload?: Partial<NotifyPayload>) => {
       if (!('Notification' in window)) return;
+      if (!('serviceWorker' in navigator)) return;
 
-      // Only await permission request — everything else is synchronous
-      // to preserve the user gesture context required by the browser
       if (Notification.permission === 'default') {
         const result = await Notification.requestPermission();
         if (result !== 'granted') return;
@@ -40,11 +40,13 @@ export function useServiceWorker() {
 
       setEnabled(true);
 
-      // Fire immediately — no SW await, no async gap, gesture context intact
-      new Notification(payload?.title ?? 'CareWise Clinical Alert', {
+      const registration = await navigator.serviceWorker.ready;
+      await registration.showNotification(payload?.title ?? 'CareWise Clinical Alert', {
         body: payload?.body ?? 'A patient requires immediate attention.',
         icon: '/icon.svg',
-        tag:  payload?.tag  ?? 'carewise-alert',
+        badge: '/icon.svg',
+        tag: payload?.tag ?? 'carewise-alert',
+        data: { patientId: payload?.patientId },
       });
     },
     [setEnabled],
@@ -52,7 +54,7 @@ export function useServiceWorker() {
 
   const notifyPatient = useCallback(
     (name: string, message: string, patientId?: string) =>
-      sendNotification({ title: `Alert: ${name}`, body: message, tag: patientId }),
+      sendNotification({ title: `Alert: ${name}`, body: message, tag: patientId, patientId }),
     [sendNotification],
   );
 
